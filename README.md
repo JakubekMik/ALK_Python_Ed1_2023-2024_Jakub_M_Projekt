@@ -22,3 +22,6 @@ Program oblicza wskaźnik harmonizacji procesu, który jest stosunkiem ilości S
 - **Przedstawienie Graficzne Wyników:**
 
 Program prezentuje wyniki analizy w formie graficznej, co ułatwia ich zrozumienie i interpretację. Użytkownik ma możliwość ograniczenia wyników do konkretnego regionu lub procesu, co pozwala na bardziej szczegółową analizę danych.wienie graficzne tych wartości, wraz z możliwością ograniczenie wyników przez uzytkownika do Regionu bądz procesu. 
+
+
+![Prezentacja](https://github.com/JakubekMik/ALK_Python_Ed1_2023-2024_Jakub_M_Projekt/blob/main/Obrazy/Jakub%20Alk-Main.jpg)
