@@ -30,7 +30,7 @@ def homepage():
         if st.button("Strona 3"):
             st.write("Przechodzisz do Strony 3")
 
-    intro_markdown = read_markdown_file("../README.md")
+    intro_markdown = read_markdown_file("README.md")
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
     st.image("./Obrazy/Jakub ALK-Main.jpg")
