@@ -20,6 +20,7 @@ def Harmonization_page():
         unique_regions = przyklad_group["Region"].unique()
         unique_cluster = przyklad_group["Cluster"].unique()
         unique_country = przyklad_group["Country"].unique()
+        filtere_data   = przyklad_group
     else:
         filtere_data = przyklad_group[przyklad_group["Process-Level3"] == option4]
         unique_cluster = filtere_data["Cluster"].unique()
@@ -30,13 +31,14 @@ def Harmonization_page():
     st.write("Tudaj powinna byc wartosc dla Austri i Order Managementu: ")
     st.write(harmonizacion(przyklad_group, country="Austria", process="Oder Management"))
 
-    scope_unique_regions = [harmonizacion(przyklad_group[przyklad_group["Region"] == region])
+
+    scope_unique_regions = [harmonizacion(filtere_data[filtere_data["Region"] == region])
         for region in unique_regions]
-    scope_unique_cluster = [harmonizacion(przyklad_group[przyklad_group["Cluster"] == region])
+    scope_unique_cluster = [harmonizacion(filtere_data[filtere_data["Cluster"] == region])
         for region in unique_cluster]
-    scope_unique_country = [harmonizacion(przyklad_group[przyklad_group["Country"] == region])
+    scope_unique_country = [harmonizacion(filtere_data[filtere_data["Country"] == region])
         for region in unique_country]
-    scope_unique_process = [harmonizacion(przyklad_group[przyklad_group["Process-Level3"] == region])
+    scope_unique_process = [harmonizacion(filtere_data[filtere_data["Process-Level3"] == region])
         for region in uniquer_process]
 
     BarChart(unique_regions, scope_unique_regions, "Region", "Harmonization level")
