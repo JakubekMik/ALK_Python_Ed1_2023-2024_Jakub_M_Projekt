@@ -1,6 +1,9 @@
 import streamlit as st
+from pathlib import Path
 from Scope_Comp_web import Scope_page
 
+def read_markdown_file(markdown_file):
+    return Path(markdown_file).read_text()
 
 # Tworzymy sobie definicje strony startowej:
 def homepage():
@@ -27,7 +30,11 @@ def homepage():
         if st.button("Strona 3"):
             st.write("Przechodzisz do Strony 3")
 
-    st.image("Jakub ALK-Main.jpg")
+    intro_markdown = read_markdown_file("../README.md")
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+
+    st.image("./Obrazy/Jakub ALK-Main.jpg")
+    st.image("./Obrazy/Jakub ALK-PSC.jpg")
 # Strona 1
 def page1():
     st.title("Strona 1")

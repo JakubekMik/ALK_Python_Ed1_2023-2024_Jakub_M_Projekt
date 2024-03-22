@@ -1,8 +1,7 @@
-from Ladowanie_Tabel import przyklad_standard_group
-from Funkcje import scope_completition, harmonizacion, BarChart
+from Dodatkowe_Pliki.Ladowanie_Tabel import przyklad_standard_group
+from Dodatkowe_Pliki.Funkcje import scope_completition, BarChart
 import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
+
 
 def Scope_page():
 
