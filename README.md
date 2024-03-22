@@ -25,3 +25,11 @@ Program prezentuje wyniki analizy w formie graficznej, co ułatwia ich zrozumien
 
 
 ![Prezentacja](https://github.com/JakubekMik/ALK_Python_Ed1_2023-2024_Jakub_M_Projekt/blob/main/Obrazy/Jakub%20Alk-Main.jpg)
+
+# Sposób uruchomienia 
+
+```python
+ streamlit run ".\Program.py" 
+
+```
+
