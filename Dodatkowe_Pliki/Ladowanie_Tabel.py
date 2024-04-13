@@ -63,6 +63,11 @@ przyklad = przyklad.assign(Country=przyklad["Country"].str.split(", ")).explode(
 )
 # print(przyklad.head())
 
+# Kasujemy wiersze dla których wartość jest "N/A"
+
+przyklad = przyklad.drop(przyklad[przyklad['Value'] == 'N/A'].index)
+
+
 # Zamiana wartości z tesktu na liczby (Potrzebne do wyliczenia procentów)
 # Najpierw tworzymy słownik który dla którego przypiszemy wartość słowną do wartości liczbowej
 mapping_wartosci = {"Yes": 1, "No": 0, "N/A": 0, "A": 2, "B": 3, "C": 4}
