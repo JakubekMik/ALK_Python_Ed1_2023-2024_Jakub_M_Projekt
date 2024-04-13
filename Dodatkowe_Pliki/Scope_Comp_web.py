@@ -9,7 +9,9 @@ def Scope_page():
     st.title("Jakub Mikołajczyk - ALK Python Ed1 2023 - 2024")
 
     # Dodatkowy tekst
-    st.header("Tutaj prezentowana jest poziom realizacji procesów względem zakresu geograficznego")
+    st.header(
+        "Tutaj prezentowana jest poziom realizacji procesów względem zakresu geograficznego"
+    )
 
     # A tutaj dodajemy sobie opcje wyboru odnośnie procesu
     option1 = st.sidebar.selectbox(
@@ -143,20 +145,56 @@ def Scope_page():
 
     if option1 != "All":
         highlighted_index = list(unique_regions).index(option1)
-        BarChart2(unique_regions, scope_unique_regions, "Region", "Scope Completition",highlight_index=highlighted_index)
+        BarChart2(
+            unique_regions,
+            scope_unique_regions,
+            "Region",
+            "Scope Completition",
+            "Wykres ilustrujący Poziom realizacji procesów po Regionach",
+            highlight_index=highlighted_index,
+        )
     else:
-        BarChart(unique_regions, scope_unique_regions, "Region", "Scope Completition")
+        BarChart(
+            unique_regions,
+            scope_unique_regions,
+            "Region",
+            "Scope Completition",
+            "Wykres ilustrujący Poziom realizacji procesów po Regionach",
+        )
 
     if option2 != "All":
         highlighted_index = list(unique_cluster).index(option2)
-        BarChart2(unique_cluster, scope_unique_cluster, "Cluster", "Scope Completition",highlight_index=highlighted_index)
+        BarChart2(
+            unique_cluster,
+            scope_unique_cluster,
+            "Cluster",
+            "Scope Completition",
+            "Wykres ilustrujący Poziom realizacji procesów po Clustrach",
+            highlight_index=highlighted_index,
+        )
     else:
-        BarChart(unique_cluster, scope_unique_cluster, "Cluster", "Scope Completition")
+        BarChart(
+            unique_cluster,
+            scope_unique_cluster,
+            "Cluster",
+            "Scope Completition",
+            "Wykres ilustrujący Poziom realizacji procesów po Clustrach",
+        )
     if option3 != "All":
         highlighted_index = list(unique_country).index(option3)
-        BarChart2(unique_country, scope_unique_country, "Country", "Scope Completition",highlight_index=highlighted_index)
+        BarChart2(
+            unique_country,
+            scope_unique_country,
+            "Country",
+            "Scope Completition",
+            "Wykres ilustrujący Poziom realizacji procesów po Krajach",
+            highlight_index=highlighted_index,
+        )
     else:
-        BarChart(unique_country, scope_unique_country, "Country", "Scope Completition")
-
-
-
+        BarChart(
+            unique_country,
+            scope_unique_country,
+            "Country",
+            "Scope Completition",
+            "Wykres ilustrujący Poziom realizacji procesów po Krajach",
+        )

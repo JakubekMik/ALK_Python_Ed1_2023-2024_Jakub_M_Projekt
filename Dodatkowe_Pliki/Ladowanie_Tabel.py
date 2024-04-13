@@ -29,10 +29,10 @@ columns_to_remove = [
 ]
 przyklad = przyklad.drop(columns=columns_to_remove)
 
-#zmiana nazwe :
+# zmiana nazwe :
 przyklad = przyklad.rename(columns={"Process - Level 3": "Process-Level3"})
 # kasujemy spacje
-przyklad['Process-Level3'] = przyklad['Process-Level3'].str.strip()
+przyklad["Process-Level3"] = przyklad["Process-Level3"].str.strip()
 
 # print(przyklad.head())
 
@@ -65,7 +65,7 @@ przyklad = przyklad.assign(Country=przyklad["Country"].str.split(", ")).explode(
 
 # Kasujemy wiersze dla których wartość jest "N/A"
 
-przyklad = przyklad.drop(przyklad[przyklad['Value'] == 'N/A'].index)
+przyklad = przyklad.drop(przyklad[przyklad["Value"] == "N/A"].index)
 
 
 # Zamiana wartości z tesktu na liczby (Potrzebne do wyliczenia procentów)
@@ -74,7 +74,7 @@ mapping_wartosci = {"Yes": 1, "No": 0, "N/A": 0, "A": 2, "B": 3, "C": 4}
 przyklad["Value"] = przyklad["Value"].map(mapping_wartosci)
 # print(przyklad.head())
 # Sprawdzamy jaki jest typ kolumny
-#print((przyklad["Value"].dtype))
+# print((przyklad["Value"].dtype))
 # print(przyklad["Value"].describe())
 # Zamieniamy kolumne na wartosci :
 przyklad["Value"] = pd.to_numeric(przyklad["Value"])
@@ -128,10 +128,10 @@ przyklad_standard_group["Value"] = przyklad_standard_group["Value"].apply(
     lambda x: 0 if x == 0 else 1
 )
 
-#print(f' test {scope_completition(przyklad_standard, region="REU")*100}%')
-#print(f' test {scope_completition(przyklad_standard_group, region="REU")*100}%')
+# print(f' test {scope_completition(przyklad_standard, region="REU")*100}%')
+# print(f' test {scope_completition(przyklad_standard_group, region="REU")*100}%')
 
-#for x in przyklad_standard_group["Country"]:
+# for x in przyklad_standard_group["Country"]:
 #    print(f" {x}  - {scope_completition(przyklad_standard, country=x)*100}%")
 
 przyklad_group = (
@@ -151,6 +151,6 @@ przyklad_group = (
 przyklad_group["Value"] = przyklad_group["Value"].apply(lambda x: 0 if x == 0 else 1)
 
 
-#for x in przyklad_group["Country"]:
+# for x in przyklad_group["Country"]:
 #    print(f" {x}  - {harmonizacion(przyklad_standard, country=x)}")
 print(przyklad_group.columns)

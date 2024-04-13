@@ -45,7 +45,6 @@ def scope_completition(df, country=None, cluster=None, region=None):
 def harmonizacion(df, country=None, cluster=None, region=None, process=None):
     # Tutaj musimy trochę namieszać bo jest problem ze musimy mieć więcej niż jeden filtr :
 
-
     filter_condition = pd.Series(True, index=df.index)
     # Tworzymy filtry którę będą brały wartość z funkcji
     if country:
@@ -57,8 +56,8 @@ def harmonizacion(df, country=None, cluster=None, region=None, process=None):
     if process:
         filter_condition &= df["Process-Level3"] == process
 
-   # if scope_completition(df, country=country, cluster=cluster, region=region) == 0:
-   #     return "Proces nie jest przejęty"
+    # if scope_completition(df, country=country, cluster=cluster, region=region) == 0:
+    #     return "Proces nie jest przejęty"
 
     # Analogicznie jak dla Scope Completition, czyli najpierw robimy filtracje
     filtered_df = df[filter_condition]
@@ -94,7 +93,9 @@ def BarChart(x, y, TextX=None, TextY=None, Title=None):
 
     return st.pyplot(plt)
 
+
 # Tutaj wykres dla którego wybór powoduje pokolorowanie :
+
 
 def BarChart2(x, y, TextX=None, TextY=None, Title=None, highlight_index=None):
     # Definicja rozmiaru :
@@ -105,7 +106,9 @@ def BarChart2(x, y, TextX=None, TextY=None, Title=None, highlight_index=None):
 
     # Tutaj magia, czyli kod który powienien kiedy następuje podanie filtra kolorować wykres:
     if highlight_index is not None:
-        colors[highlight_index] = "#ff5733"  # Tutaj możesz ustawić inny kolor dla wyróżnionego słupka
+        colors[highlight_index] = (
+            "#ff5733"  # Tutaj możesz ustawić inny kolor dla wyróżnionego słupka
+        )
 
     # Definicja koloru wykresu
     plt.bar(x, y, color=colors)
