@@ -47,7 +47,7 @@ def Harmonization_page():
         for process in all_processes]
 
     if option4 != "All":
-        highlighted_index = list(uniquer_process).index(option4)
+        highlighted_index = list(all_processes).index(option4)
         BarChart2(all_processes, all_harmonizations, "Process", "Harmonization level", "Wykres ilustrujący Poziom Harmonizacji dla wybranego procesu", highlight_index=highlighted_index)
     else:
         BarChart(all_processes, all_harmonizations, "Process", "Harmonization level",
