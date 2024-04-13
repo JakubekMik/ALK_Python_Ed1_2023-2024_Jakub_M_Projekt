@@ -1,5 +1,5 @@
 from Dodatkowe_Pliki.Ladowanie_Tabel import przyklad_standard_group
-from Dodatkowe_Pliki.Funkcje import scope_completition, BarChart
+from Dodatkowe_Pliki.Funkcje import scope_completition, BarChart, BarChart2
 import streamlit as st
 
 
@@ -9,9 +9,9 @@ def Scope_page():
     st.title("Jakub Mikołajczyk - ALK Python Ed1 2023 - 2024")
 
     # Dodatkowy tekst
-    st.header("To jest dodatkowy tekst.")
+    st.header("Tutaj prezentowana jest poziom realizacji procesów względem zakresu geograficznego")
 
-    # A tutaj dodajemy sobie opcje wyboru odnośnie regionu
+    # A tutaj dodajemy sobie opcje wyboru odnośnie procesu
     option1 = st.sidebar.selectbox(
         "Please select Region",
         (["All"] + list(przyklad_standard_group["Region"].unique())),
@@ -141,6 +141,22 @@ def Scope_page():
         for country in unique_country
     ]
 
-    BarChart(unique_regions, scope_unique_regions, "Region", "Scope Completition")
-    BarChart(unique_cluster, scope_unique_cluster, "Cluster", "Scope Completition")
-    BarChart(unique_country, scope_unique_country, "Country", "Scope Completition")
+    if option1 != "All":
+        highlighted_index = list(unique_regions).index(option1)
+        BarChart2(unique_regions, scope_unique_regions, "Region", "Scope Completition",highlight_index=highlighted_index)
+    else:
+        BarChart(unique_regions, scope_unique_regions, "Region", "Scope Completition")
+
+    if option2 != "All":
+        highlighted_index = list(unique_cluster).index(option2)
+        BarChart2(unique_cluster, scope_unique_cluster, "Cluster", "Scope Completition",highlight_index=highlighted_index)
+    else:
+        BarChart(unique_cluster, scope_unique_cluster, "Cluster", "Scope Completition")
+    if option3 != "All":
+        highlighted_index = list(unique_country).index(option3)
+        BarChart2(unique_country, scope_unique_country, "Country", "Scope Completition",highlight_index=highlighted_index)
+    else:
+        BarChart(unique_country, scope_unique_country, "Country", "Scope Completition")
+
+
+

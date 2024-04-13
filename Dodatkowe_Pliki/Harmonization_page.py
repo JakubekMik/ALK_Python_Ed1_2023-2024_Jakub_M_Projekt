@@ -1,5 +1,5 @@
 from Dodatkowe_Pliki.Ladowanie_Tabel import przyklad_group
-from Dodatkowe_Pliki.Funkcje import harmonizacion, BarChart
+from Dodatkowe_Pliki.Funkcje import harmonizacion, BarChart, BarChart2
 import streamlit as st
 
 
@@ -13,37 +13,47 @@ def Harmonization_page():
 
     # A tutaj dodajemy sobie opcje wyboru odnośnie procesu
     option4 = st.sidebar.selectbox(
-        "Please select Region",
+        "Please select Process",
         (["All"] + list(przyklad_group["Process-Level3"].unique())),
     )
     if option4 == "All":
-        unique_regions = przyklad_group["Region"].unique()
-        unique_cluster = przyklad_group["Cluster"].unique()
-        unique_country = przyklad_group["Country"].unique()
         filtere_data   = przyklad_group
     else:
         filtere_data = przyklad_group[przyklad_group["Process-Level3"] == option4]
-        unique_cluster = filtere_data["Cluster"].unique()
-        unique_country = filtere_data["Country"].unique()
-        unique_regions = filtere_data["Region"].unique()
-    uniquer_process = przyklad_group["Process-Level3"].unique()
 
-    st.write("Tudaj powinna byc wartosc dla Austri i Order Managementu: ")
-    st.write(harmonizacion(przyklad_group, country="Austria", process="Oder Management"))
+    unique_regions = filtere_data["Region"].unique()
+    unique_cluster = filtere_data["Cluster"].unique()
+    unique_country = filtere_data["Country"].unique()
+    uniquer_process = filtere_data["Process-Level3"].unique()
 
-
-    scope_unique_regions = [harmonizacion(filtere_data[filtere_data["Region"] == region])
+    har_unique_regions = [harmonizacion(filtere_data[filtere_data["Region"] == region])
         for region in unique_regions]
-    scope_unique_cluster = [harmonizacion(filtere_data[filtere_data["Cluster"] == region])
+    har_unique_cluster = [harmonizacion(filtere_data[filtere_data["Cluster"] == region])
         for region in unique_cluster]
-    scope_unique_country = [harmonizacion(filtere_data[filtere_data["Country"] == region])
+    har_unique_country = [harmonizacion(filtere_data[filtere_data["Country"] == region])
         for region in unique_country]
-    scope_unique_process = [harmonizacion(filtere_data[filtere_data["Process-Level3"] == region])
+    har_unique_process = [harmonizacion(filtere_data[filtere_data["Process-Level3"] == region])
         for region in uniquer_process]
 
-    BarChart(unique_regions, scope_unique_regions, "Region", "Harmonization level")
-    BarChart(unique_cluster, scope_unique_cluster, "Cluster", "Harmonization level")
-    BarChart(unique_country, scope_unique_country, "Country", "Harmonization level")
-    BarChart(uniquer_process, scope_unique_process, "Process", "Harmonization level")
+    BarChart(unique_regions, har_unique_regions, "Region", "Harmonization level", "Wykres ilustrujący Poziom Harmonizacji po Regionach")
+    BarChart(unique_cluster, har_unique_cluster, "Cluster", "Harmonization level", "Wykres ilustrujący Poziom Harmonizacji po Clustrach")
+    BarChart(unique_country, har_unique_country, "Country", "Harmonization level", "Wykres ilustrujący Poziom Harmonizacji po Krajach")
+    BarChart(uniquer_process, har_unique_process, "Process", "Harmonization level","Wykres ilustrujący Poziom Harmonizacji dla wybranego procesu")
+
+    # Tworzymy sobie dodatkowe zmiene tak aby utworzyć wykres dla którego nie wpływa filtracja
+
+    all_processes = przyklad_group["Process-Level3"].unique()
+    all_harmonizations = [harmonizacion(przyklad_group[przyklad_group["Process-Level3"] == process])
+        for process in all_processes]
+
+    if option4 != "All":
+        highlighted_index = list(uniquer_process).index(option4)
+        BarChart2(all_processes, all_harmonizations, "Process", "Harmonization level", "Wykres ilustrujący Poziom Harmonizacji dla wybranego procesu", highlight_index=highlighted_index)
+    else:
+        BarChart(all_processes, all_harmonizations, "Process", "Harmonization level",
+                 "Wykres ilustrujący Ogólny Poziom Harmonizacji dla wszystkich procesów")
+
+
+
 
 

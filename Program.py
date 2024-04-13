@@ -12,21 +12,21 @@ def read_markdown_file(markdown_file):
 def homepage():
     st.title("Jakub Mikołajczyk - ALK Python Ed1 2023 - 2024")
     st.caption("Witaj na stronie startowej!")
-    st.write("Wybierz jedną z opcji poniżej, aby przejść do innych stron:")
+    #st.write("Wybierz jedną z opcji poniżej, aby przejść do innych stron:")
 
     # Odnośniki do innych stron
-    st.header("Wybierz stronę:")
-    col1, col2, col3 = st.columns(3)
+    #st.header("Wybierz stronę:")
+    #col1, col2, col3 = st.columns(3)
 
     # Przycisk do strony 1
-    with col1:
-        if st.button("Strona 1"):
-            st.write("Przechodzisz do Strony 1")
+    #with col1:
+     #   if st.button("Strona 1"):
+      #      st.write("Przechodzisz do Strony 1")
 
     # Przycisk do strony 2
-    with col2:
-        if st.button("Strona 2"):
-            st.write("Przechodzisz do Strony 2")
+    #with col2:
+    #    if st.button("Strona 2"):
+    #        st.write("Przechodzisz do Strony 2")
 
     # Przycisk do strony 3
 
@@ -38,15 +38,15 @@ def homepage():
 
 
 # Strona 1
-def page1():
-    st.title("Strona 1")
-    st.write("To jest Strona 1")
+#def page1():
+#    st.title("Strona 1")
+#    st.write("To jest Strona 1")
 
 
 # Strona 2
-def page2():
-    st.title("Strona 2")
-    st.write("To jest Strona 2")
+#def page2():
+#    st.title("Strona 2")
+#    st.write("To jest Strona 2")
 
 
 # Strona 3

@@ -93,3 +93,27 @@ def BarChart(x, y, TextX=None, TextY=None, Title=None):
     plt.tight_layout()
 
     return st.pyplot(plt)
+
+# Tutaj wykres dla którego wybór powoduje pokolorowanie :
+
+def BarChart2(x, y, TextX=None, TextY=None, Title=None, highlight_index=None):
+    # Definicja rozmiaru :
+    plt.figure(figsize=(10, 6))
+
+    # Domyślny kolor dla wszystkich słupków
+    colors = ["#05647e"] * len(x)
+
+    # Tutaj magia, czyli kod który powienien kiedy następuje podanie filtra kolorować wykres:
+    if highlight_index is not None:
+        colors[highlight_index] = "#ff5733"  # Tutaj możesz ustawić inny kolor dla wyróżnionego słupka
+
+    # Definicja koloru wykresu
+    plt.bar(x, y, color=colors)
+    plt.xlabel(TextX)
+    plt.ylabel(TextY)
+    plt.title(Title)
+    # Jak mają wyświetlać się nazwy na wykresie
+    plt.xticks(rotation=45, ha="right")
+    plt.tight_layout()
+
+    return st.pyplot(plt)
