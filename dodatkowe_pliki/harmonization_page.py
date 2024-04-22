@@ -1,9 +1,9 @@
-from Dodatkowe_Pliki.Ladowanie_Tabel import przyklad_group
-from Dodatkowe_Pliki.Funkcje import harmonizacion, BarChart, BarChart2
+from dodatkowe_pliki.ladowanie_tabel import przyklad_group
+from dodatkowe_pliki.funkcje import harmonizacion, bar_chart, bar_chart_2
 import streamlit as st
 
 
-def Harmonization_page():
+def harmonization_page():
 
     # Dodajemy napis na górze
     st.title("Jakub Mikołajczyk - ALK Python Ed1 2023 - 2024")
@@ -43,28 +43,28 @@ def Harmonization_page():
         for region in uniquer_process
     ]
 
-    BarChart(
+    bar_chart(
         unique_regions,
         har_unique_regions,
         "Region",
         "Harmonization level",
         "Wykres ilustrujący Poziom Harmonizacji po Regionach",
     )
-    BarChart(
+    bar_chart(
         unique_cluster,
         har_unique_cluster,
         "Cluster",
         "Harmonization level",
         "Wykres ilustrujący Poziom Harmonizacji po Clustrach",
     )
-    BarChart(
+    bar_chart(
         unique_country,
         har_unique_country,
         "Country",
         "Harmonization level",
         "Wykres ilustrujący Poziom Harmonizacji po Krajach",
     )
-    BarChart(
+    bar_chart(
         uniquer_process,
         har_unique_process,
         "Process",
@@ -82,7 +82,7 @@ def Harmonization_page():
 
     if option4 != "All":
         highlighted_index = list(all_processes).index(option4)
-        BarChart2(
+        bar_chart_2(
             all_processes,
             all_harmonizations,
             "Process",
@@ -91,7 +91,7 @@ def Harmonization_page():
             highlight_index=highlighted_index,
         )
     else:
-        BarChart(
+        bar_chart(
             all_processes,
             all_harmonizations,
             "Process",

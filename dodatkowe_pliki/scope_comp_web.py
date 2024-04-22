@@ -1,9 +1,9 @@
-from Dodatkowe_Pliki.Ladowanie_Tabel import przyklad_standard_group
-from Dodatkowe_Pliki.Funkcje import scope_completition, BarChart, BarChart2
+from dodatkowe_pliki.ladowanie_tabel import przyklad_standard_group
+from dodatkowe_pliki.funkcje import scope_completition, bar_chart, bar_chart_2
 import streamlit as st
 
 
-def Scope_page():
+def scope_page():
 
     # Dodajemy napis na górze
     st.title("Jakub Mikołajczyk - ALK Python Ed1 2023 - 2024")
@@ -145,7 +145,7 @@ def Scope_page():
 
     if option1 != "All":
         highlighted_index = list(unique_regions).index(option1)
-        BarChart2(
+        bar_chart_2(
             unique_regions,
             scope_unique_regions,
             "Region",
@@ -154,7 +154,7 @@ def Scope_page():
             highlight_index=highlighted_index,
         )
     else:
-        BarChart(
+        bar_chart(
             unique_regions,
             scope_unique_regions,
             "Region",
@@ -164,7 +164,7 @@ def Scope_page():
 
     if option2 != "All":
         highlighted_index = list(unique_cluster).index(option2)
-        BarChart2(
+        bar_chart_2(
             unique_cluster,
             scope_unique_cluster,
             "Cluster",
@@ -173,7 +173,7 @@ def Scope_page():
             highlight_index=highlighted_index,
         )
     else:
-        BarChart(
+        bar_chart(
             unique_cluster,
             scope_unique_cluster,
             "Cluster",
@@ -182,7 +182,7 @@ def Scope_page():
         )
     if option3 != "All":
         highlighted_index = list(unique_country).index(option3)
-        BarChart2(
+        bar_chart_2(
             unique_country,
             scope_unique_country,
             "Country",
@@ -191,7 +191,7 @@ def Scope_page():
             highlight_index=highlighted_index,
         )
     else:
-        BarChart(
+        bar_chart(
             unique_country,
             scope_unique_country,
             "Country",

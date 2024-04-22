@@ -1,7 +1,7 @@
 # Ładowanie biblitek:
 
 import pandas as pd
-from Dodatkowe_Pliki.Funkcje import harmonizacion, scope_completition
+from dodatkowe_pliki.funkcje import harmonizacion, scope_completition
 
 # Wczytanie danych z pliku Excel
 # Docelowo ma to być pobierane bezpośrednie z sharpointa, więc będzie uzyta fukcja url oraz ograniczenie do tylko kokretnej zakładki
@@ -9,7 +9,7 @@ from Dodatkowe_Pliki.Funkcje import harmonizacion, scope_completition
 # df = pd.read_excel(url, sheet_name="Table13454")
 
 # W naszym przypadku będziemy pobierać dane z pliku "Jakub_Example"
-przyklad = pd.read_excel("./Przyklad/Jakub_Example.xlsx")
+przyklad = pd.read_excel("./przyklad/jakub_example.xlsx")
 # print(przyklad.head())
 
 # Usuwanie zbędnych kolumn :
@@ -81,7 +81,7 @@ przyklad["Value"] = pd.to_numeric(przyklad["Value"])
 
 
 # Ładujemy teraz liste krajów wraz z podziałem na regiony/clustry
-country_list = pd.read_excel("./Przyklad/Jakub_Example.xlsx", sheet_name="Country_List")
+country_list = pd.read_excel("./przyklad/jakub_example.xlsx", sheet_name="Country_List")
 # print(country_list.head())
 
 # Łączymy dane z przykładu z danymi z country list

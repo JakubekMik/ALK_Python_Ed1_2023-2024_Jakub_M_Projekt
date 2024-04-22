@@ -1,7 +1,7 @@
 import streamlit as st
 from pathlib import Path
-from Dodatkowe_Pliki.Scope_Comp_web import Scope_page
-from Dodatkowe_Pliki.Harmonization_page import Harmonization_page
+from dodatkowe_pliki.scope_comp_web import scope_page
+from dodatkowe_pliki.harmonization_page import harmonization_page
 
 
 def read_markdown_file(markdown_file):
@@ -34,8 +34,8 @@ def homepage():
     intro_markdown = read_markdown_file("README.md")
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
-    st.image("./Obrazy/Jakub ALK-Main.jpg")
-    st.image("./Obrazy/Jakub ALK-PSC.jpg")
+    st.image("./obrazy/jakub_alk_main.jpg")
+    st.image("./obrazy/jakub_alk_psc.jpg")
 
 
 # Strona 1
@@ -62,6 +62,6 @@ page = st.sidebar.selectbox(
 if page == "Strona startowa":
     homepage()
 elif page == "Scope":
-    Scope_page()
+    scope_page()
 elif page == "Harmonization":
-    Harmonization_page()
+    harmonization_page()

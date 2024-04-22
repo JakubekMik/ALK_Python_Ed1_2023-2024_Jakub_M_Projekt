@@ -79,7 +79,7 @@ def harmonizacion(df, country=None, cluster=None, region=None, process=None):
 
 
 # A Tutaj sobie tworze funkcje co mi wykresy będzie plotować tak jak bym chciał miec nowej kolory
-def BarChart(x, y, TextX=None, TextY=None, Title=None):
+def bar_chart(x, y, TextX=None, TextY=None, Title=None):
     # Definicja rozmiaru :
     plt.figure(figsize=(10, 6))
     # Definicja koloru wykresu
@@ -97,7 +97,7 @@ def BarChart(x, y, TextX=None, TextY=None, Title=None):
 # Tutaj wykres dla którego wybór powoduje pokolorowanie :
 
 
-def BarChart2(x, y, TextX=None, TextY=None, Title=None, highlight_index=None):
+def bar_chart_2(x, y, TextX=None, TextY=None, Title=None, highlight_index=None):
     # Definicja rozmiaru :
     plt.figure(figsize=(10, 6))
 
