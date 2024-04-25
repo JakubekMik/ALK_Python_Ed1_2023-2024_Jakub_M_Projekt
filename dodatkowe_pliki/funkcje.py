@@ -1,13 +1,9 @@
-# Tutaj będą tworzone funkcje
-
-# Pierwsz funkcją jest funckja która wylicza scope completition :
 import matplotlib.pyplot as plt
 import streamlit as st
 import pandas as pd
 
 
 def scope_completition(df, country=None, cluster=None, region=None):
-    # Tworzymy filtry którę będą brały wartość z funkcji
     if country:
         filter_condition = df["Country"] == country
         filtered_df = df[filter_condition]
@@ -20,16 +16,9 @@ def scope_completition(df, country=None, cluster=None, region=None):
     else:
         filtered_df = df
 
-    # Kolejnym krokiem jest utworznie data framu z zastosowanymi filtrami
-    # filtered_df = df[filter_condition]
-
-    # Liczymy sume wartości
     total_value = filtered_df["Value"].sum()
 
-    # Liczymy liczbę wieszy
     num_rows = len(filtered_df)
-
-    # Obliczamy stosunek sumy do ilości wierszy
 
     if num_rows > 0:
         percentage = round((total_value / num_rows), 2)
@@ -37,9 +26,6 @@ def scope_completition(df, country=None, cluster=None, region=None):
         percentage = 0
 
     return percentage
-
-
-# Funckja która wylicza wartości harmonizacji
 
 
 def harmonizacion(df, country=None, cluster=None, region=None, process=None):
@@ -56,19 +42,11 @@ def harmonizacion(df, country=None, cluster=None, region=None, process=None):
     if process:
         filter_condition &= df["Process-Level3"] == process
 
-    # if scope_completition(df, country=country, cluster=cluster, region=region) == 0:
-    #     return "Proces nie jest przejęty"
-
-    # Analogicznie jak dla Scope Completition, czyli najpierw robimy filtracje
     filtered_df = df[filter_condition]
 
-    # Liczymy sume wartości
     total_value = filtered_df["Value"].sum()
 
-    # Liczymy liczbę wieszy
     num_rows = len(filtered_df)
-
-    # Obliczamy stosunek sumy do ilości wierszy
 
     if num_rows > 0:
         percentage = round((total_value / num_rows), 2)
@@ -78,7 +56,6 @@ def harmonizacion(df, country=None, cluster=None, region=None, process=None):
     return percentage
 
 
-# A Tutaj sobie tworze funkcje co mi wykresy będzie plotować tak jak bym chciał miec nowej kolory
 def bar_chart(x, y, TextX=None, TextY=None, Title=None):
     # Definicja rozmiaru :
     plt.figure(figsize=(10, 6))
@@ -92,9 +69,6 @@ def bar_chart(x, y, TextX=None, TextY=None, Title=None):
     plt.tight_layout()
 
     return st.pyplot(plt)
-
-
-# Tutaj wykres dla którego wybór powoduje pokolorowanie :
 
 
 def bar_chart_2(x, y, TextX=None, TextY=None, Title=None, highlight_index=None):

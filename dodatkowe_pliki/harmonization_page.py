@@ -1,17 +1,11 @@
 from dodatkowe_pliki.ladowanie_tabel import przyklad_group
-from dodatkowe_pliki.funkcje import harmonizacion, bar_chart, bar_chart_2
+from dodatkowe_pliki.funkcje import harmonizacion, bar_chart_2
 import streamlit as st
 
 
 def harmonization_page():
-
-    # Dodajemy napis na górze
     st.title("Jakub Mikołajczyk - ALK Python Ed1 2023 - 2024")
-
-    # Dodatkowy tekst
     st.header("Graficzna ilustracja procesu harmonizacji.")
-
-    # A tutaj dodajemy sobie opcje wyboru odnośnie procesu
     option4 = st.sidebar.selectbox(
         "Please select Process",
         (["All"] + list(przyklad_group["Process-Level3"].unique())),
@@ -43,33 +37,37 @@ def harmonization_page():
         for region in uniquer_process
     ]
 
-    bar_chart(
+    bar_chart_2(
         unique_regions,
         har_unique_regions,
         "Region",
         "Harmonization level",
         "Wykres ilustrujący Poziom Harmonizacji po Regionach",
+        highlight_index=None,
     )
-    bar_chart(
+    bar_chart_2(
         unique_cluster,
         har_unique_cluster,
         "Cluster",
         "Harmonization level",
         "Wykres ilustrujący Poziom Harmonizacji po Clustrach",
+        highlight_index=None,
     )
-    bar_chart(
+    bar_chart_2(
         unique_country,
         har_unique_country,
         "Country",
         "Harmonization level",
         "Wykres ilustrujący Poziom Harmonizacji po Krajach",
+        highlight_index=None,
     )
-    bar_chart(
+    bar_chart_2(
         uniquer_process,
         har_unique_process,
         "Process",
         "Harmonization level",
         "Wykres ilustrujący Poziom Harmonizacji dla wybranego procesu",
+        highlight_index=None,
     )
 
     # Tworzymy sobie dodatkowe zmiene tak aby utworzyć wykres dla którego nie wpływa filtracja
@@ -91,10 +89,11 @@ def harmonization_page():
             highlight_index=highlighted_index,
         )
     else:
-        bar_chart(
+        bar_chart_2(
             all_processes,
             all_harmonizations,
             "Process",
             "Harmonization level",
             "Wykres ilustrujący Ogólny Poziom Harmonizacji dla wszystkich procesów",
+            highlight_index=None,
         )

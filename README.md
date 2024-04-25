@@ -29,7 +29,7 @@ Program prezentuje wyniki analizy w formie graficznej, co ułatwia ich zrozumien
 # Sposób uruchomienia 
 
 ```python
- streamlit run ".\Program.py" 
+ streamlit run ".\program.py" 
 
 ```
 
