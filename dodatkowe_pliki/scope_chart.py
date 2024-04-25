@@ -27,34 +27,36 @@ def scope_bar1(option1):
 
 
 def scope_bar2(option1, option2):
-    unique_cluster = (
-        przyklad_standard_group[przyklad_standard_group["Region"] == option1][
-            "Cluster"
-        ].unique()
-        if option1 != "All"
-        else przyklad_standard_group["Cluster"].unique()
-    )
-    scope_unique_cluster = [
+    if option1 != "All":
+        unique_clusters = przyklad_standard_group[
+            przyklad_standard_group["Region"] == option1
+        ]["Cluster"].unique()
+    else:
+        unique_clusters = przyklad_standard_group["Cluster"].unique()
+
+    scope_unique_clusters = [
         scope_completition(
             przyklad_standard_group[przyklad_standard_group["Cluster"] == cluster]
         )
-        for cluster in unique_cluster
+        for cluster in unique_clusters
     ]
 
     highlighted_index = (
-        list(unique_cluster).index(option2) if option2 != "All" else None
+        list(unique_clusters).index(option2) if option2 != "All" else None
     )
+
+    chart_title = "Wykres ilustrujący Poziom realizacji procesów po Clustrach"
     bar_chart_2(
-        unique_cluster,
-        scope_unique_cluster,
+        unique_clusters,
+        scope_unique_clusters,
         "Cluster",
         "Scope Completition",
-        "Wykres ilustrujący Poziom realizacji procesów po Clustrach",
+        chart_title,
         highlight_index=highlighted_index,
     )
 
 
-def scope_bar3(option1, option2, option3):
+def get_unique_countries(option1, option2, przyklad_standard_group):
     if option2 != "All":
         unique_country = przyklad_standard_group[
             przyklad_standard_group["Cluster"] == option2
@@ -65,6 +67,11 @@ def scope_bar3(option1, option2, option3):
         ]["Country"].unique()
     else:
         unique_country = przyklad_standard_group["Country"].unique()
+    return unique_country
+
+
+def scope_bar3(option1, option2, option3, przyklad_standard_group):
+    unique_country = get_unique_countries(option1, option2, przyklad_standard_group)
 
     scope_unique_country = [
         scope_completition(
@@ -76,11 +83,12 @@ def scope_bar3(option1, option2, option3):
     highlighted_index = (
         list(unique_country).index(option3) if option3 != "All" else None
     )
+    chart_title = "Wykres ilustrujący Poziom realizacji procesów po Krajach"
     bar_chart_2(
         unique_country,
         scope_unique_country,
         "Country",
         "Scope Completition",
-        "Wykres ilustrujący Poziom realizacji procesów po Krajach",
+        chart_title,
         highlight_index=highlighted_index,
     )
