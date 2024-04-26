@@ -33,3 +33,10 @@ def side_bar(tabela, region, cluster, country):
         option3 = "All"
 
     return option1, option2, option3
+
+def side_bar_2(process):
+    option4 = st.sidebar.selectbox(
+        "Please select Process",
+        (["All"] + list(process.unique())),
+    )
+    return option4

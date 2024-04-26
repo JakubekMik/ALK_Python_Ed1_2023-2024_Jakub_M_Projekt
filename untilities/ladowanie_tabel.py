@@ -1,7 +1,7 @@
 # Ładowanie biblitek:
 
 import pandas as pd
-from dodatkowe_pliki.funkcje import harmonizacion, scope_completition
+from untilities.funkcje import harmonizacion, scope_completition
 
 # Wczytanie danych z pliku Excel
 # Docelowo ma to być pobierane bezpośrednie z sharpointa, więc będzie uzyta fukcja url oraz ograniczenie do tylko kokretnej zakładki
@@ -9,8 +9,8 @@ from dodatkowe_pliki.funkcje import harmonizacion, scope_completition
 # df = pd.read_excel(url, sheet_name="Table13454")
 
 # W naszym przypadku będziemy pobierać dane z pliku "Jakub_Example"
-przyklad = pd.read_excel("./przyklad/jakub_example.xlsx")
-# print(przyklad.head())
+przyklad = pd.read_excel("./example/jakub_example.xlsx")
+# print(example.head())
 
 # Usuwanie zbędnych kolumn :
 
@@ -34,7 +34,7 @@ przyklad = przyklad.rename(columns={"Process - Level 3": "Process-Level3"})
 # kasujemy spacje
 przyklad["Process-Level3"] = przyklad["Process-Level3"].str.strip()
 
-# print(przyklad.head())
+# print(example.head())
 
 # A teraz magia, czyli odpivotowanie danych
 # https://pandas.pydata.org/docs/reference/api/pandas.melt.html
@@ -52,7 +52,7 @@ przyklad = przyklad.melt(
     var_name="Country",
     value_name="Value",
 )
-# print(przyklad.head())
+# print(example.head())
 
 # Kolejnym krokiem jest wydzielenie grupy krajów na oddzielne regmenty
 # Czyli najpierw uzywany funckji assign aby dodać nową kolumne, gdzie wartości są podzielone ", "
@@ -61,7 +61,7 @@ przyklad = przyklad.melt(
 przyklad = przyklad.assign(Country=przyklad["Country"].str.split(", ")).explode(
     "Country"
 )
-# print(przyklad.head())
+# print(example.head())
 
 # Kasujemy wiersze dla których wartość jest "N/A"
 
@@ -72,16 +72,16 @@ przyklad = przyklad.drop(przyklad[przyklad["Value"] == "N/A"].index)
 # Najpierw tworzymy słownik który dla którego przypiszemy wartość słowną do wartości liczbowej
 mapping_wartosci = {"Yes": 1, "No": 0, "N/A": 0, "A": 2, "B": 3, "C": 4}
 przyklad["Value"] = przyklad["Value"].map(mapping_wartosci)
-# print(przyklad.head())
+# print(example.head())
 # Sprawdzamy jaki jest typ kolumny
-# print((przyklad["Value"].dtype))
-# print(przyklad["Value"].describe())
+# print((example["Value"].dtype))
+# print(example["Value"].describe())
 # Zamieniamy kolumne na wartosci :
 przyklad["Value"] = pd.to_numeric(przyklad["Value"])
 
 
 # Ładujemy teraz liste krajów wraz z podziałem na regiony/clustry
-country_list = pd.read_excel("./przyklad/jakub_example.xlsx", sheet_name="Country_List")
+country_list = pd.read_excel("./example/jakub_example.xlsx", sheet_name="Country_List")
 # print(country_list.head())
 
 # Łączymy dane z przykładu z danymi z country list
@@ -93,7 +93,7 @@ przyklad = pd.merge(
     how="left",
 )
 
-# print(przyklad.head())
+# print(example.head())
 
 # Tworzymy tabele tylko i wyłacznie w standarowymi procesami
 

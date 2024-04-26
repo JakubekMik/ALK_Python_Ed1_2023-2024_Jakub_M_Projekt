@@ -1,7 +1,8 @@
 import streamlit as st
-from dodatkowe_pliki.scope_comp_web import scope_page
-from dodatkowe_pliki.harmonization_page import harmonization_page
-from dodatkowe_pliki.home_page import homepage
+from pages.scope_completition import scope_page
+from pages.harmonization import harmonization_page
+from pages.home_page import homepage
+
 
 page = st.sidebar.selectbox(
     "Wybierz stronę", ("Strona startowa", "Scope", "Harmonization")
