@@ -5,7 +5,6 @@ import base64
 import io
 
 
-
 def scope_completition(df, country=None, cluster=None, region=None):
     if country:
         filter_condition = df["Country"] == country
@@ -58,13 +57,12 @@ def harmonizacion(df, country=None, cluster=None, region=None, process=None):
 
     return percentage
 
+
 def bar_chart_2(x, y, TextX=None, TextY=None, Title=None, highlight_index=None):
     plt.figure(figsize=(10, 6))
     colors = ["#05647e"] * len(x)
     if highlight_index is not None:
-        colors[highlight_index] = (
-            "#ff5733"
-        )
+        colors[highlight_index] = "#ff5733"
     plt.bar(x, y, color=colors)
     plt.xlabel(TextX)
     plt.ylabel(TextY)
@@ -72,6 +70,7 @@ def bar_chart_2(x, y, TextX=None, TextY=None, Title=None, highlight_index=None):
     plt.xticks(rotation=45, ha="right")
     plt.tight_layout()
     return st.pyplot(plt)
+
 
 def bar_chart(x, y, TextX=None, TextY=None, Title=None, highlight_index=None, ax=None):
     if ax is None:
@@ -81,9 +80,7 @@ def bar_chart(x, y, TextX=None, TextY=None, Title=None, highlight_index=None, ax
 
     colors = ["#05647e"] * len(x)
     if highlight_index is not None:
-        colors[highlight_index] = (
-            "#ff5733"
-        )
+        colors[highlight_index] = "#ff5733"
 
     ax.bar(x, y, color=colors)
     ax.set_xlabel(TextX)
@@ -94,16 +91,21 @@ def bar_chart(x, y, TextX=None, TextY=None, Title=None, highlight_index=None, ax
 
     return fig
 
-def magic(fig,name):
+
+def magic(fig, name):
     image_stream = io.BytesIO()
     fig.savefig(image_stream, format="png")
     image_stream.seek(0)
     base64_image = base64.b64encode(image_stream.getvalue()).decode("utf-8")
-    return st.markdown(f'<a href="data:file/png;base64,{base64_image}" download={name}>Click here to download the upper graph</a>',
-                unsafe_allow_html=True)
+    return st.markdown(
+        f'<a href="data:file/png;base64,{base64_image}" download={name}>Click here to download the upper graph</a>',
+        unsafe_allow_html=True,
+    )
 
 
-def full_magic(x, y, TextX=None, TextY=None, Title=None, highlight_index=None, filename="chart.png"):
+def full_magic(
+    x, y, TextX=None, TextY=None, Title=None, highlight_index=None, filename="chart.png"
+):
     fig, ax = plt.subplots(figsize=(10, 6))
     colors = ["#05647e"] * len(x)
     if highlight_index is not None:
@@ -117,14 +119,16 @@ def full_magic(x, y, TextX=None, TextY=None, Title=None, highlight_index=None, f
     st.pyplot(fig)
     magic(fig, filename)
 
-def unique_1(table,table_with_kolumn,unique_country):
+
+def unique_1(table, table_with_kolumn, unique_country):
     har_unique = [
-    harmonizacion(table[table_with_kolumn == region])
-    for region in unique_country]
+        harmonizacion(table[table_with_kolumn == region]) for region in unique_country
+    ]
 
     return har_unique
+
 
 def unique_2(table):
     unique = table.unique()
 
-    return  unique
+    return unique

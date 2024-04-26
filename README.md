@@ -1,37 +1,49 @@
 # Jakub Mikołajczyk - ALK_Python_Ed1_2023-2024 
 
-## Wprowadzenie do Programu Harmonizacji Procesów
+## Introduction to Process Harmonization Program
 
-Program Harmonizacji Procesów to narzędzie analizy danych, które umożliwia przetwarzanie i analizę informacji dotyczących procesów biznesowych. Poniżej znajdziesz opis czynności wykonywanych przez ten program:
+The Process Harmonization Program is a data analysis tool that enables the processing and analysis of information related to business processes. Below you will find a description of the tasks performed by this program:
 
-- **Podział Kolumny na Separacje:**
+- **Column Separation:**
 
-Program automatycznie dzieli kolumnę zawierającą nazwy krajów, w przypadku gdy występuje więcej niż jedna nazwa kraju (oddzielone przecinkiem lub innym separatorem). Ta operacja ułatwia analizę danych związanych z wieloma krajami.
-- **Konwersja Danych z Pivota do Bazy Danych:**
+The program automatically separates the column containing country names when there is more than one country name (separated by a comma or other delimiter). This operation facilitates the analysis of data related to multiple countries.
 
-Program umożliwia konwersję danych dostarczonych w formie pivota do formy bazy danych. Odwraca ten proces, co pozwala na lepszą analizę i przechowywanie danych w bardziej tradycyjnej formie bazodanowej.
-- **Przyporządkowanie Danych do Odpowiednich Regionów Geograficznych:**
+- **Data Conversion from Pivot to Database:**
 
-Dane są przyporządkowywane do odpowiednich regionów geograficznych, co pozwala na analizę danych z perspektywy geograficznej. To ułatwia zrozumienie, w jakich regionach występują określone zjawiska biznesowe.
-- **Wyliczenie Process Scope Completion:**
+The program allows the conversion of data provided in pivot form to database form. It reverses this process, allowing for better analysis and storage of data in a more traditional database form.
 
-Program oblicza, czy dla danego poziomu procesu (poziom 4) istnieje zadanie wykonywane na poziomie 6 (wartość "Yes"). Proces jest uznawany za przejęty, jeśli takie zadanie istnieje. W przeciwnym razie, jeśli brakuje takiego zadania, proces jest traktowany jako nieprzejęty, z ewentualnym pominięciem "Local Exception".
-- **Wyliczenie Harmonizacji Procesu:**
+- **Assignment of Data to Corresponding Geographic Regions:**
 
-Program oblicza wskaźnik harmonizacji procesu, który jest stosunkiem ilości Standard Task wykonywanych (wartość Yes) do ilości wszystkich Standard Tasków w procesie, z uwzględnieniem ewentualnych Local Exception. Ten wskaźnik pomaga zrozumieć stopień standaryzacji i spójności w wykonywanych procesach.
-- **Przedstawienie Graficzne Wyników:**
+Data is assigned to the appropriate geographic regions, enabling data analysis from a geographical perspective. This facilitates understanding of where specific business phenomena occur.
 
-Program prezentuje wyniki analizy w formie graficznej, co ułatwia ich zrozumienie i interpretację. Użytkownik ma możliwość ograniczenia wyników do konkretnego regionu lub procesu, co pozwala na bardziej szczegółową analizę danych.wienie graficzne tych wartości, wraz z możliwością ograniczenie wyników przez uzytkownika do Regionu bądz procesu. 
+- **Calculation of Process Scope Completion:**
 
+The program calculates whether for a given process level (level 4) there is a task performed at level 6 (value "Yes"). The process is considered adopted if such a task exists. Otherwise, if such a task is missing, the process is considered unadopted, with the possibility of "Local Exception" being skipped.
 
+- **Calculation of Process Harmonization:**
+
+The program calculates the process harmonization index, which is the ratio of the number of Standard Tasks performed (value Yes) to the total number of Standard Tasks in the process, taking into account any Local Exceptions. This index helps understand the degree of standardization and consistency in the processes being performed.
+
+- **Graphical Presentation of Results:**
+
+The program presents the analysis results graphically, making them easier to understand and interpret. Users have the option to limit the results to a specific region or process, enabling a more detailed analysis.
+
+### Graphical ilustation of program
 ![Prezentacja](https://github.com/JakubekMik/ALK_Python_Ed1_2023-2024_Jakub_M_Projekt/blob/main/picture/jakub_alk_main.jpg)
+### Graphical ilustation of program
 ![Prezentacja](https://github.com/JakubekMik/ALK_Python_Ed1_2023-2024_Jakub_M_Projekt/blob/main/picture/jakub_alk_psc.jpg)
 
 
-# Sposób uruchomienia 
+## Running Instructions
 
 ```python
 streamlit run ".\program.py" 
 
 ```
+## Requirements
+To run the program, make sure you have the required Python packages installed. You can install them using the following command:
 
+```python
+pip install -r requirements.txt
+
+```
