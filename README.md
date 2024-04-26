@@ -24,12 +24,12 @@ Program oblicza wskaźnik harmonizacji procesu, który jest stosunkiem ilości S
 Program prezentuje wyniki analizy w formie graficznej, co ułatwia ich zrozumienie i interpretację. Użytkownik ma możliwość ograniczenia wyników do konkretnego regionu lub procesu, co pozwala na bardziej szczegółową analizę danych.wienie graficzne tych wartości, wraz z możliwością ograniczenie wyników przez uzytkownika do Regionu bądz procesu. 
 
 
-![Prezentacja](https://github.com/JakubekMik/ALK_Python_Ed1_2023-2024_Jakub_M_Projekt/blob/main/Obrazy/Jakub%20Alk-Main.jpg)
+![Prezentacja](https://github.com/JakubekMik/ALK_Python_Ed1_2023-2024_Jakub_M_Projekt/blob/main/picture/jakub%20alk-main.jpg)
 
 # Sposób uruchomienia 
 
 ```python
- streamlit run ".\program.py" 
+streamlit run ".\program.py" 
 
 ```
 
