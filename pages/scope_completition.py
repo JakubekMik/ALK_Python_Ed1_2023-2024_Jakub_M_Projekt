@@ -9,9 +9,7 @@ def scope_page():
     today = datetime.date.today().strftime("%Y-%m-%d")
     st.page_link("program.py", label="Home", icon="🏠")
     st.title("Jakub Mikołajczyk - ALK Python Ed1 2023 - 2024")
-    st.header(
-        "Illustrating the Level of Scope Completition"
-    )
+    st.header("Illustrating the Level of Scope Completition")
 
     option_region, option_cluster, option_country = side_bar_country(
         exampl_table_standard_group,
@@ -65,7 +63,9 @@ def scope_page():
         "Scope Completition",
         f"Chart illustrating the Level of Scope Completition by cluster",
         highlight_index=(
-            list(unique_clusters.unique()).index(option_cluster) if option_cluster != "All" else None
+            list(unique_clusters.unique()).index(option_cluster)
+            if option_cluster != "All"
+            else None
         ),
         filename=f"{today}_Scope_Completition_level_per_cluster.png",
     )
@@ -97,7 +97,9 @@ def scope_page():
         "Scope Completition",
         f"Chart illustrating the Level of Scope Completition by cluster",
         highlight_index=(
-            list(unique_country.unique()).index(option_country) if option_country != "All" else None
+            list(unique_country.unique()).index(option_country)
+            if option_country != "All"
+            else None
         ),
         filename=f"{today}_Scope_Completition_level_per_cluster.png",
     )

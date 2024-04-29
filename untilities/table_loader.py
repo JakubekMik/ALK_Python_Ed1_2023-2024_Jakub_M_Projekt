@@ -1,7 +1,7 @@
 import pandas as pd
 
 exampl_table = pd.read_excel("./example/jakub_example.xlsx")
-
+# exampl_table = pd.read_excel("C:\Python\Projekt na zaliczenie\ALK_Python_Ed1_2023-2024_Jakub_M_Projekt\example\jakub_example.xlsx")
 columns_to_remove = [
     "No_L1",
     "No_L2",
@@ -32,6 +32,7 @@ exampl_table = exampl_table.melt(
     var_name="Country",
     value_name="Value",
 )
+exampl_table = exampl_table[exampl_table["Value"] != "N/A"]
 
 exampl_table["Country"] = exampl_table["Country"].str.split(", ")
 exampl_table = exampl_table.explode("Country")
@@ -39,7 +40,9 @@ exampl_table = exampl_table.explode("Country")
 mapping_values = {"Yes": 1, "No": 0, "N/A": 0, "A": 2, "B": 3, "C": 4}
 exampl_table["Value"] = exampl_table["Value"].map(mapping_values).fillna(0).astype(int)
 
+
 country_list = pd.read_excel("./example/jakub_example.xlsx", sheet_name="Country_List")
+# country_list = pd.read_excel("C:\Python\Projekt na zaliczenie\ALK_Python_Ed1_2023-2024_Jakub_M_Projekt\example\jakub_example.xlsx", sheet_name="Country_List")
 exampl_table = pd.merge(
     exampl_table,
     country_list,
@@ -48,7 +51,9 @@ exampl_table = pd.merge(
     how="left",
 )
 
-exampl_table_standard = exampl_table[exampl_table["Standard/Local exception"] == "Standard"].copy()
+exampl_table_standard = exampl_table[
+    exampl_table["Standard/Local exception"] == "Standard"
+].copy()
 exampl_table_standard_group = (
     exampl_table_standard.groupby(
         [
@@ -79,5 +84,3 @@ exampl_table_group = (
     .apply(lambda x: 0 if x == 0 else 1)
     .reset_index()
 )
-
-print(exampl_table_group.columns)

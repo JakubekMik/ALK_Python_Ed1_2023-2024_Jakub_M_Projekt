@@ -12,9 +12,13 @@ def side_bar_country(tabela, region, cluster, country):
             option_cluster_selection = ["All"] + list(cluster.unique())
         else:
             option_cluster_selection = tabela[region == option_region]
-            option_cluster_selection = ["All"] + list(option_cluster_selection["Cluster"].unique())
+            option_cluster_selection = ["All"] + list(
+                option_cluster_selection["Cluster"].unique()
+            )
 
-        option_cluster = st.sidebar.selectbox("Please select Cluster", option_cluster_selection)
+        option_cluster = st.sidebar.selectbox(
+            "Please select Cluster", option_cluster_selection
+        )
     else:
         option_cluster = "All"
 
@@ -23,12 +27,18 @@ def side_bar_country(tabela, region, cluster, country):
             option_country_selection = ["All"] + list(country.unique())
         elif option_cluster == "All":
             option_country_selection = tabela[region == option_region]
-            option_country_selection = ["All"] + list(option_country_selection["Country"].unique())
+            option_country_selection = ["All"] + list(
+                option_country_selection["Country"].unique()
+            )
         else:
             option_country_selection = tabela[cluster == option_cluster]
-            option_country_selection = ["All"] + list(option_country_selection["Country"].unique())
+            option_country_selection = ["All"] + list(
+                option_country_selection["Country"].unique()
+            )
 
-        option_country = st.sidebar.selectbox("Please select Country", option_country_selection)
+        option_country = st.sidebar.selectbox(
+            "Please select Country", option_country_selection
+        )
     else:
         option_country = "All"
 

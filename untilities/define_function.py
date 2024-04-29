@@ -5,27 +5,6 @@ import base64
 import io
 
 
-def calculate_scope_completition(df, country=None, cluster=None, region=None):
-    if country:
-        filter_condition = df["Country"] == country
-        filtered_df = df[filter_condition]
-    elif cluster:
-        filter_condition = df["Cluster"] == cluster
-        filtered_df = df[filter_condition]
-    elif region:
-        filter_condition = df["Region"] == region
-        filtered_df = df[filter_condition]
-    else:
-        filtered_df = df
-    total_value = filtered_df["Value"].sum()
-    num_rows = len(filtered_df)
-    if num_rows > 0:
-        percentage = round((total_value / num_rows), 2)
-    else:
-        percentage = 0
-    return percentage
-
-
 def calculate_harmonizacion(df, country=None, cluster=None, region=None, process=None):
     filter_condition = pd.Series(True, index=df.index)
     if country:
@@ -37,15 +16,19 @@ def calculate_harmonizacion(df, country=None, cluster=None, region=None, process
     if process:
         filter_condition &= df["Process-Level3"] == process
     filtered_df = df[filter_condition]
-    total_value = filtered_df["Value"].sum()
-    num_rows = len(filtered_df)
-    if num_rows > 0:
-        percentage = round((total_value / num_rows), 2)
+    num_rows_value_1 = len(filtered_df[filtered_df["Value"] == 1])
+    total_rows = len(filtered_df)
+    if total_rows > 0:
+        percentage = round((num_rows_value_1 / total_rows) * 100, 2)
     else:
         percentage = 0
+
     return percentage
 
-def bar_chart_with_colors(x, y, TextX=None, TextY=None, Title=None, highlight_index=None):
+
+def bar_chart_with_colors(
+    x, y, TextX=None, TextY=None, Title=None, highlight_index=None
+):
     plt.figure(figsize=(10, 6))
     colors = ["#05647e"] * len(x)
     if highlight_index is not None:
@@ -59,7 +42,9 @@ def bar_chart_with_colors(x, y, TextX=None, TextY=None, Title=None, highlight_in
     return st.pyplot(plt)
 
 
-def bar_chart_with_colors_and_fig(x, y, TextX=None, TextY=None, Title=None, highlight_index=None, ax=None):
+def bar_chart_with_colors_and_fig(
+    x, y, TextX=None, TextY=None, Title=None, highlight_index=None, ax=None
+):
     if ax is None:
         fig, ax = plt.subplots(figsize=(10, 6))
     else:
@@ -109,7 +94,8 @@ def bar_char_and_download(
 
 def unique_table_rows(table, table_with_kolumn, unique_country):
     har_unique = [
-        harmonizacion(table[table_with_kolumn == region]) for region in unique_country
+        calculate_harmonizacion(table[table_with_kolumn == region])
+        for region in unique_country
     ]
 
     return har_unique

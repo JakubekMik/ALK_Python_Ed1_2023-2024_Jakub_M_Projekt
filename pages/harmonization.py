@@ -1,25 +1,34 @@
 from untilities.table_loader import exampl_table
 import streamlit as st
 from untilities.side_bar import side_bar_process
-from untilities.define_function import bar_char_and_download, unique_table_rows, unique
+from untilities.define_function import (
+    bar_char_and_download,
+    unique_table_rows,
+    unique,
+    calculate_harmonizacion,
+)
 import datetime
 
 
 def harmonization_page():
     st.page_link("program.py", label="Home", icon="🏠")
 
+    st.write(
+        "France Harmonization", calculate_harmonizacion(exampl_table, country="France")
+    )
+
     st.title("Jakub Mikołajczyk - ALK Python Ed1 2023 - 2024")
     st.header("Illustrating the Level of Harmonization")
 
     option_process = side_bar_process(exampl_table["Process-Level3"])
     today = datetime.date.today().strftime("%Y-%m-%d")
-    st.write("Process Selected:", option_process) if option_process != "All" else None
 
     filtere_data = (
         exampl_table[exampl_table["Process-Level3"] == option_process]
         if option_process != "All"
         else exampl_table
     )
+    st.write("Process Selected:", option_process) if option_process != "All" else None
 
     bar_char_and_download(
         unique(filtere_data["Region"]),
@@ -58,17 +67,17 @@ def harmonization_page():
     )
 
     bar_char_and_download(
-        unique(przyklad_group["Process-Level3"]),
+        unique(exampl_table["Process-Level3"]),
         unique_table_rows(
-            przyklad_group,
-            przyklad_group["Process-Level3"],
-            unique(przyklad_group["Process-Level3"]),
+            exampl_table,
+            exampl_table["Process-Level3"],
+            unique(exampl_table["Process-Level3"]),
         ),
         "Process",
         "Harmonization level",
         "Chart illustrating the Level of Harmonization by cluster",
         highlight_index=(
-            list(przyklad_group["Process-Level3"].unique()).index(option_process)
+            list(exampl_table["Process-Level3"].unique()).index(option_process)
             if option_process != "All"
             else None
         ),

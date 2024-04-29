@@ -1,12 +1,14 @@
 import streamlit as st
 from untilities.function_streamlit import read_markdown_file
 
+
 def homepage():
 
     st.title("Jakub Mikołajczyk - ALK Python Ed1 2023 - 2024")
     st.caption("Welcome to home page")
 
-    st.markdown('''
+    st.markdown(
+        """
 
 ## Introduction to Process Harmonization Program
 
@@ -35,13 +37,15 @@ The program calculates the process harmonization index, which is the ratio of th
 - **Graphical Presentation of Results:**
 
 The program presents the analysis results graphically, making them easier to understand and interpret. Users have the option to limit the results to a specific region or process, enabling a more detailed analysis.
-''')
+"""
+    )
 
-   # intro_markdown = read_markdown_file("README.md")
-   # st.markdown(intro_markdown, unsafe_allow_html=True)
+    # intro_markdown = read_markdown_file("README.md")
+    # st.markdown(intro_markdown, unsafe_allow_html=True)
 
     st.image("./picture/jakub_alk_main.jpg")
     st.image("./picture/jakub_alk_psc.jpg")
+
 
 if __name__ == "__main__":
     homepage()
