@@ -1,7 +1,7 @@
-from untilities.ladowanie_tabel import przyklad_group
+from untilities.table_loader import exampl_table
 import streamlit as st
-from untilities.side_bar import side_bar_2
-from untilities.funkcje import full_magic, unique_1, unique_2
+from untilities.side_bar import side_bar_process
+from untilities.define_function import bar_char_and_download, unique_table_rows, unique
 import datetime
 
 
@@ -9,67 +9,67 @@ def harmonization_page():
     st.page_link("program.py", label="Home", icon="🏠")
 
     st.title("Jakub Mikołajczyk - ALK Python Ed1 2023 - 2024")
-    st.header("Graficzna ilustracja procesu harmonizacji.")
+    st.header("Illustrating the Level of Harmonization")
 
-    option4 = side_bar_2(przyklad_group["Process-Level3"])
+    option_process = side_bar_process(exampl_table["Process-Level3"])
     today = datetime.date.today().strftime("%Y-%m-%d")
-    st.write("Process Selected:", option4) if option4 != "All" else None
+    st.write("Process Selected:", option_process) if option_process != "All" else None
 
     filtere_data = (
-        przyklad_group[przyklad_group["Process-Level3"] == option4]
-        if option4 != "All"
-        else przyklad_group
+        exampl_table[exampl_table["Process-Level3"] == option_process]
+        if option_process != "All"
+        else exampl_table
     )
 
-    full_magic(
-        unique_2(filtere_data["Region"]),
-        unique_1(
-            filtere_data, filtere_data["Region"], unique_2(filtere_data["Region"])
+    bar_char_and_download(
+        unique(filtere_data["Region"]),
+        unique_table_rows(
+            filtere_data, filtere_data["Region"], unique(filtere_data["Region"])
         ),
         "Region",
         "Harmonization level",
-        f"Chart illustrating the Level of Harmonization {option4} process by region",
+        f"Chart illustrating the Level of Harmonization {option_process} process by region",
         highlight_index=None,
-        filename=f"{today}_{option4}_Harmonization_level_per_region.png",
+        filename=f"{today}_{option_process}_Harmonization_level_per_region.png",
     )
 
-    full_magic(
-        unique_2(filtere_data["Cluster"]),
-        unique_1(
-            filtere_data, filtere_data["Cluster"], unique_2(filtere_data["Cluster"])
+    bar_char_and_download(
+        unique(filtere_data["Cluster"]),
+        unique_table_rows(
+            filtere_data, filtere_data["Cluster"], unique(filtere_data["Cluster"])
         ),
         "Cluster",
         "Harmonization level",
-        f"Chart illustrating the Level of Harmonization {option4} process by cluster",
+        f"Chart illustrating the Level of Harmonization {option_process} process by cluster",
         highlight_index=None,
-        filename=f"{today}_{option4}_Harmonization_level_per_cluster.png",
+        filename=f"{today}_{option_process}_Harmonization_level_per_cluster.png",
     )
 
-    full_magic(
-        unique_2(filtere_data["Country"]),
-        unique_1(
-            filtere_data, filtere_data["Country"], unique_2(filtere_data["Country"])
+    bar_char_and_download(
+        unique(filtere_data["Country"]),
+        unique_table_rows(
+            filtere_data, filtere_data["Country"], unique(filtere_data["Country"])
         ),
         "Country",
         "Harmonization level",
-        f"Chart illustrating the Level of Harmonization {option4} process by country",
+        f"Chart illustrating the Level of Harmonization {option_process} process by country",
         highlight_index=None,
-        filename=f"{today}_{option4}_Harmonization_level_per_country.png",
+        filename=f"{today}_{option_process}_Harmonization_level_per_country.png",
     )
 
-    full_magic(
-        unique_2(przyklad_group["Process-Level3"]),
-        unique_1(
+    bar_char_and_download(
+        unique(przyklad_group["Process-Level3"]),
+        unique_table_rows(
             przyklad_group,
             przyklad_group["Process-Level3"],
-            unique_2(przyklad_group["Process-Level3"]),
+            unique(przyklad_group["Process-Level3"]),
         ),
         "Process",
         "Harmonization level",
         "Chart illustrating the Level of Harmonization by cluster",
         highlight_index=(
-            list(przyklad_group["Process-Level3"].unique()).index(option4)
-            if option4 != "All"
+            list(przyklad_group["Process-Level3"].unique()).index(option_process)
+            if option_process != "All"
             else None
         ),
         filename=f"{today}_Harmonization_level_per_process.png",

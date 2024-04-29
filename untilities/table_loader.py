@@ -1,6 +1,6 @@
 import pandas as pd
 
-przyklad = pd.read_excel("./example/jakub_example.xlsx")
+exampl_table = pd.read_excel("./example/jakub_example.xlsx")
 
 columns_to_remove = [
     "No_L1",
@@ -15,11 +15,11 @@ columns_to_remove = [
     "Department",
     "Team",
 ]
-przyklad = przyklad.drop(columns=columns_to_remove)
-przyklad.rename(columns={"Process - Level 3": "Process-Level3"}, inplace=True)
-przyklad["Process-Level3"] = przyklad["Process-Level3"].str.strip()
+exampl_table = exampl_table.drop(columns=columns_to_remove)
+exampl_table.rename(columns={"Process - Level 3": "Process-Level3"}, inplace=True)
+exampl_table["Process-Level3"] = exampl_table["Process-Level3"].str.strip()
 
-przyklad = przyklad.melt(
+exampl_table = exampl_table.melt(
     id_vars=[
         "Category - Level 1",
         "Process Group - Level 2",
@@ -33,24 +33,24 @@ przyklad = przyklad.melt(
     value_name="Value",
 )
 
-przyklad["Country"] = przyklad["Country"].str.split(", ")
-przyklad = przyklad.explode("Country")
+exampl_table["Country"] = exampl_table["Country"].str.split(", ")
+exampl_table = exampl_table.explode("Country")
 
 mapping_values = {"Yes": 1, "No": 0, "N/A": 0, "A": 2, "B": 3, "C": 4}
-przyklad["Value"] = przyklad["Value"].map(mapping_values).fillna(0).astype(int)
+exampl_table["Value"] = exampl_table["Value"].map(mapping_values).fillna(0).astype(int)
 
 country_list = pd.read_excel("./example/jakub_example.xlsx", sheet_name="Country_List")
-przyklad = pd.merge(
-    przyklad,
+exampl_table = pd.merge(
+    exampl_table,
     country_list,
     left_on="Country",
     right_on="Country_Description",
     how="left",
 )
 
-przyklad_standard = przyklad[przyklad["Standard/Local exception"] == "Standard"].copy()
-przyklad_standard_group = (
-    przyklad_standard.groupby(
+exampl_table_standard = exampl_table[exampl_table["Standard/Local exception"] == "Standard"].copy()
+exampl_table_standard_group = (
+    pexampl_table_standard.groupby(
         [
             "Category - Level 1",
             "Process Group - Level 2",
@@ -64,8 +64,8 @@ przyklad_standard_group = (
     .apply(lambda x: 0 if x == 0 else 1)
     .reset_index()
 )
-przyklad_group = (
-    przyklad.groupby(
+exampl_table_group = (
+    exampl_table.groupby(
         [
             "Category - Level 1",
             "Process Group - Level 2",
@@ -80,4 +80,4 @@ przyklad_group = (
     .reset_index()
 )
 
-print(przyklad_group.columns)
+print(exampl_table_group.columns)
