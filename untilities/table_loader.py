@@ -50,7 +50,7 @@ exampl_table = pd.merge(
 
 exampl_table_standard = exampl_table[exampl_table["Standard/Local exception"] == "Standard"].copy()
 exampl_table_standard_group = (
-    pexampl_table_standard.groupby(
+    exampl_table_standard.groupby(
         [
             "Category - Level 1",
             "Process Group - Level 2",
