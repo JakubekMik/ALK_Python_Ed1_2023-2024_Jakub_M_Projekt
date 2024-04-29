@@ -31,6 +31,7 @@ exampl_table = exampl_table.melt(
     ],
     var_name="Country",
     value_name="Value",
+    how="inner"
 )
 exampl_table = exampl_table[exampl_table["Value"] != "N/A"]
 
@@ -39,6 +40,7 @@ exampl_table = exampl_table.explode("Country")
 
 mapping_values = {"Yes": 1, "No": 0, "N/A": 0, "A": 2, "B": 3, "C": 4}
 exampl_table["Value"] = exampl_table["Value"].map(mapping_values).fillna(0).astype(int)
+exampl_table = exampl_table[pd.to_numeric(exampl_table["Value"], errors="coerce").notna()]
 
 
 country_list = pd.read_excel("./example/jakub_example.xlsx", sheet_name="Country_List")
