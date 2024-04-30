@@ -9,6 +9,7 @@ from untilities.define_function import (
 )
 import datetime
 
+option_process =  "All"
 
 def harmonization_page():
     st.page_link("program.py", label="Home", icon="🏠")
@@ -24,7 +25,11 @@ def harmonization_page():
         if option_process != "All"
         else exampl_table
     )
-    st.write("Process Selected:", option_process) if option_process != "All" else None
+
+    if option_process != "All":
+        st.write("Process Selected:", option_process)
+    else:
+        pass
 
     bar_char_and_download(
         unique(filtere_data["Region"]),

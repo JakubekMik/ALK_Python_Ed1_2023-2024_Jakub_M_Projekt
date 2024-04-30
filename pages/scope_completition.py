@@ -4,6 +4,10 @@ from untilities.side_bar import side_bar_country
 from untilities.define_function import bar_char_and_download, unique_table_rows, unique
 import datetime
 
+option_region  = "All"
+option_cluster = "All"
+option_country = "All"
+
 
 def scope_page():
     today = datetime.date.today().strftime("%Y-%m-%d")
