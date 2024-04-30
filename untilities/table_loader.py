@@ -31,7 +31,6 @@ exampl_table = exampl_table.melt(
     ],
     var_name="Country",
     value_name="Value",
-    how="inner"
 )
 exampl_table = exampl_table[exampl_table["Value"] != "N/A"]
 
@@ -50,7 +49,7 @@ exampl_table = pd.merge(
     country_list,
     left_on="Country",
     right_on="Country_Description",
-    how="left",
+    how="inner",
 )
 
 exampl_table_standard = exampl_table[
