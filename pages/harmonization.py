@@ -13,10 +13,6 @@ import datetime
 def harmonization_page():
     st.page_link("program.py", label="Home", icon="🏠")
 
-    st.write(
-        "France Harmonization", calculate_harmonizacion(exampl_table, country="France")
-    )
-
     st.title("Jakub Mikołajczyk - ALK Python Ed1 2023 - 2024")
     st.header("Illustrating the Level of Harmonization")
 
