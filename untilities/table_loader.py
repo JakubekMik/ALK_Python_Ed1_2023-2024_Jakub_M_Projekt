@@ -1,7 +1,8 @@
 import pandas as pd
 
+# Load the example table
 exampl_table = pd.read_excel("./example/jakub_example.xlsx")
-# exampl_table = pd.read_excel("C:\Python\Projekt na zaliczenie\ALK_Python_Ed1_2023-2024_Jakub_M_Projekt\example\jakub_example.xlsx")
+
 columns_to_remove = [
     "No_L1",
     "No_L2",
@@ -32,18 +33,21 @@ exampl_table = exampl_table.melt(
     var_name="Country",
     value_name="Value",
 )
-exampl_table = exampl_table[exampl_table["Value"] != "N/A"]
+
+exampl_table["Value"] = exampl_table["Value"].astype(str)
+
+#exampl_table = exampl_table[exampl_table["Value"] != "N/A"]
+exampl_table = exampl_table[exampl_table["Value"].isin(["Yes", "No", "A", "B", "C"])]
+
 
 exampl_table["Country"] = exampl_table["Country"].str.split(", ")
 exampl_table = exampl_table.explode("Country")
 
-mapping_values = {"Yes": 1, "No": 0, "N/A": 0, "A": 2, "B": 3, "C": 4}
+mapping_values = {"Yes": 1, "No": 0, "N/A": 0 , "A": 2, "B": 3, "C": 4}
 exampl_table["Value"] = exampl_table["Value"].map(mapping_values).fillna(0).astype(int)
 exampl_table = exampl_table[pd.to_numeric(exampl_table["Value"], errors="coerce").notna()]
 
-
 country_list = pd.read_excel("./example/jakub_example.xlsx", sheet_name="Country_List")
-# country_list = pd.read_excel("C:\Python\Projekt na zaliczenie\ALK_Python_Ed1_2023-2024_Jakub_M_Projekt\example\jakub_example.xlsx", sheet_name="Country_List")
 exampl_table = pd.merge(
     exampl_table,
     country_list,
